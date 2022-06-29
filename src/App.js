@@ -1,23 +1,137 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState, useCallback } from "react";
+import axios from "axios";
+import Results from './components/Results';
+import Button from './components/Button';
+import Form from './components/Form';
+import Search from './components/Search';
+import Heart from './components/Heart';
 
 function App() {
+  //サーバーからデータ取得用State
+  const [images, setImages] = useState({
+    id: "",
+    name: "",
+    comment: "",
+    Heart: "",
+    image: ""
+  });
+
+  const [images2, setImages2] = useState({
+    id:"",
+    name: "",
+    comment: "",
+    Heart: "",
+    image: ""
+  });
+  
+  //formの入力データのid
+  const [id, setId] = useState("")
+  //formのイベントパラメータ設定
+  const [nm, setNm] = useState('')
+  const [com, setCom] = useState('')
+  const [label, setLabel] = useState('')
+  //画像だけ追加の操作が必要
+  const selectImage = useCallback((e) => {
+    const selectImage = e.target.files[0]
+    setLabel(selectImage)
+  }, [])
+
+  //送信データ作成
+  const createFormData = () => {
+    const formData = new FormData();
+    if (!label) return
+    formData.append('toko[name]', nm)
+    formData.append('toko[comment]', com)
+    formData.append('toko[image]', label);
+    return formData;
+  }
+
+  //データ送信（新規登録）
+  const sendFormData = async () => {
+    const url = 'http://localhost:3001/api/v1/tokos/'
+    const data = await createFormData()
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      }
+    }
+    axios.post(url, data, config)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => alert("エラーが発生しました"));
+  }
+
+   //データ送信（更新）
+  //  const updatemData = async (id) => {
+  //   const url = `http://localhost:3001/api/v1/tokos/${id}`
+  //   const data = await createFormData()
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data',
+  //     }
+  //   }
+  //   axios.patch(url, data, config)
+  //   .then(res => {
+  //     console.log(res);
+  //   })
+  //   .catch(err => alert("エラーが発生しました"));
+  // }
+
+  // いいね機能
+  const favorite = (images) => {
+    axios.get(`http://localhost:3001/api/v1/tokos/${images.id}/favorite`)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+  }
+
+  //データ取得(new)
+  const getImage = () => {
+    axios.get("http://localhost:3001/api/v1/tokos/")
+      .then(res => {
+        console.log(res)
+        setImages({
+          id: res.data.data[0].id,
+          name: res.data.data[0].name,
+          comment: res.data.data[0].comment,
+          Heart: res.data.data[0].Heart,
+          image: res.data.data[0].image_url
+        })
+      })
+      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+  }
+
+  //データ取得(id)
+  const searchImage = () => {
+    axios.get(`http://localhost:3001/api/v1/tokos/${id}`)
+      .then(res => {
+        console.log(res)
+        setImages2({
+          id: res.data.data.id,
+          name: res.data.data.name,
+          comment: res.data.data.comment,
+          Heart: res.data.data.Heart,
+          image: res.data.data.image_url
+        })
+      })
+      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+      <h1>こんにちは</h1>
+      <Button getImage={getImage}/>
+      <Results results={images}/>
+      <Heart images={images} favorite={favorite}/>
+      <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
+      <Search searchImage={searchImage} setId={setId}/>
+      <Results results={images2}/>
+      {/* <Heart images={images2} favorite={favorite}/> */}
+
     </div>
   );
 }

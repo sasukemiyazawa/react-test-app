@@ -130,7 +130,7 @@ function App() {
       <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
       <Search searchImage={searchImage} setId={setId}/>
       <Results results={images2}/>
-      {/* <Heart images={images2} favorite={favorite}/> */}
+      <Heart images={images2} favorite={(images)=>favorite(images)}/>
 
     </div>
   );

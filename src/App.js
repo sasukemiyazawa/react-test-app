@@ -126,7 +126,7 @@ function App() {
       <h1>こんにちは</h1>
       <Button getImage={getImage}/>
       <Results results={images}/>
-      <Heart images={images} favorite={favorite}/>
+      <Heart images={images} favorite={(images)=>favorite(images)}/>
       <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
       <Search searchImage={searchImage} setId={setId}/>
       <Results results={images2}/>

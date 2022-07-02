@@ -63,21 +63,21 @@ function App() {
     .catch(err => alert("エラーが発生しました"));
   }
 
-   //データ送信（更新）
-  //  const updatemData = async (id) => {
-  //   const url = `http://localhost:3001/api/v1/tokos/${id}`
-  //   const data = await createFormData()
-  //   const config = {
-  //     headers: {
-  //       'content-type': 'multipart/form-data',
-  //     }
-  //   }
-  //   axios.patch(url, data, config)
-  //   .then(res => {
-  //     console.log(res);
-  //   })
-  //   .catch(err => alert("エラーが発生しました"));
-  // }
+  // データ送信（更新）
+   const updatemData = async (id) => {
+    const url = `http://localhost:3001/api/v1/tokos/${id}`
+    const data = await createFormData()
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      }
+    }
+    axios.patch(url, data, config)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => alert("エラーが発生しました"));
+  }
 
   // いいね機能
   const favorite = (images) => {
@@ -88,9 +88,9 @@ function App() {
       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
   }
 
-  //データ取得(new)
-  const getImage = () => {
-    axios.get("http://localhost:3001/api/v1/tokos/")
+  //データ取得(options)
+  const getImage = (options) => {
+    axios.get(`http://localhost:3001/api/v1/tokos${options}`)
       .then(res => {
         console.log(res)
         setImages({
@@ -120,17 +120,23 @@ function App() {
       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
   }
 
+  //最初に一度だけ呼ばれる
+  useEffect(()=>{
+    getImage("/heart")//いいね最多データを取得
+  }, [])
+
   return (
     <div className="App">
+
+      <Results results={images} />
     
-      <h1>こんにちは</h1>
-      <Button getImage={getImage}/>
+      {/* <Button getImage={getImage}/>
       <Results results={images}/>
       <Heart images={images} favorite={(images)=>favorite(images)}/>
       <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
       <Search searchImage={searchImage} setId={setId}/>
       <Results results={images2}/>
-      <Heart images={images2} favorite={(images)=>favorite(images)}/>
+      <Heart images={images2} favorite={(images)=>favorite(images)}/> */}
 
     </div>
   );

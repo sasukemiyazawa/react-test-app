@@ -1,10 +1,11 @@
 const Results = ({results}) => {
+    const {id, name, Heart, image} = results
     return(
         <>
-            <div>{results.id}</div>
-            <div>{results.name}</div>
-            <div>{results.Heart}</div>
-            <div><img src={results.image}/> </div>
+            {image && <div><img src={image}/></div>}
+            {/* <div>{id}</div> */}
+            {name && <div>{name}さんの作品</div>}
+            {Heart && <div>いいね：{Heart}</div>}
         </>
     );
 };

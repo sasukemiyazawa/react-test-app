@@ -9,6 +9,9 @@ import Heart from './components/Heart';
 import Scroll from './components/Scroll';
 
 function App() {
+
+  const [buttonState, setButtonState] = useState(0);
+
   //サーバーからデータ取得用State
   const [images, setImages] = useState({
     id: "",
@@ -80,15 +83,6 @@ function App() {
     .catch(err => alert("エラーが発生しました"));
   }
 
-  // いいね機能
-  const favorite = (images) => {
-    axios.get(`http://localhost:3001/api/v1/tokos/${images.id}/favorite`)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
-  }
-
   //データ取得(options)
   const getImage = (options) => {
     axios.get(`http://localhost:3001/api/v1/tokos${options}`)
@@ -124,12 +118,13 @@ function App() {
   // //最初に一度だけ呼ばれる
   useEffect(()=>{
     getImage("/heart")//いいね最多データを取得
-  }, [])
+  }, [buttonState])
 
   return (
-    <div className="App">
+    <div className="App"> 
 
       <Results results={images} />
+      <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/>
 
       <Scroll/>
     

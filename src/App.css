@@ -1,0 +1,12 @@
+.box {
+    display: flex;
+    /* width: 380px; */
+    /* height: 240px; */
+    overflow-x: scroll;
+}
+
+.box div {
+    width: 50%;
+    margin: 5px;
+    flex-shrink: 0;
+}

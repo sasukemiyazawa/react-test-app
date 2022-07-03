@@ -6,6 +6,7 @@ import Button from './components/Button';
 import Form from './components/Form';
 import Search from './components/Search';
 import Heart from './components/Heart';
+import Scroll from './components/Scroll';
 
 function App() {
   //サーバーからデータ取得用State
@@ -14,7 +15,7 @@ function App() {
     name: "",
     comment: "",
     Heart: "",
-    image: ""
+    image_url: ""
   });
 
   const [images2, setImages2] = useState({
@@ -98,7 +99,7 @@ function App() {
           name: res.data.data[0].name,
           comment: res.data.data[0].comment,
           Heart: res.data.data[0].Heart,
-          image: res.data.data[0].image_url
+          image_url: res.data.data[0].image_url
         })
       })
       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
@@ -120,7 +121,7 @@ function App() {
       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
   }
 
-  //最初に一度だけ呼ばれる
+  // //最初に一度だけ呼ばれる
   useEffect(()=>{
     getImage("/heart")//いいね最多データを取得
   }, [])
@@ -129,6 +130,8 @@ function App() {
     <div className="App">
 
       <Results results={images} />
+
+      <Scroll/>
     
       {/* <Button getImage={getImage}/>
       <Results results={images}/>

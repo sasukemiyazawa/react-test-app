@@ -14,7 +14,7 @@ const HeartBt = ({images, buttonState, setButtonState}) => {
 
 
     return(
-        <button onClick={()=>favorite(images)}>いいね</button>
+        <button onClick={()=>favorite(images)}>いいね×{images.Heart}</button>
     );
 };
 

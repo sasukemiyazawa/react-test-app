@@ -5,7 +5,7 @@ import Results from './components/Results';
 import Button from './components/Button';
 import Form from './components/Form';
 import Search from './components/Search';
-import Heart from './components/Heart';
+import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
 
 function App() {
@@ -123,10 +123,10 @@ function App() {
   return (
     <div className="App"> 
 
-      <Results results={images} />
-      <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/>
+      <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
+      {/* <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/> */}
 
-      <Scroll/>
+      <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
     
       {/* <Button getImage={getImage}/>
       <Results results={images}/>

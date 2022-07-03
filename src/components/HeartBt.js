@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Heart = ({images, buttonState, setButtonState}) => {
+const HeartBt = ({images, buttonState, setButtonState}) => {
 
     // いいね機能
     const favorite = (images) => {
@@ -18,4 +18,4 @@ const Heart = ({images, buttonState, setButtonState}) => {
     );
 };
 
-export default Heart;
+export default HeartBt;

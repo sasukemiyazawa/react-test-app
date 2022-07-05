@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Form = ({setNm, setCom, selectImage, sendFormData}) => {
     return(
         <div>
@@ -5,6 +6,8 @@ const Form = ({setNm, setCom, selectImage, sendFormData}) => {
         <input type="text" placeholder="こめんと" onChange={(e) => setCom(e.target.value)}/>
         <input type="file" onChange={(e) => selectImage(e)}/>
         <button onClick={sendFormData}>作成</button>
+
+        <Link to="/">もどる</Link>
       </div>
     );
 };

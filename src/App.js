@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useState, useCallback } from "react";
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios";
 import Results from './components/Results';
 import Button from './components/Button';
@@ -8,6 +8,7 @@ import Form from './components/Form';
 import Search from './components/Search';
 import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
+import Home from './components/Home';
 
 function App() {
 
@@ -122,22 +123,44 @@ function App() {
   }, [buttonState])
 
   return (
-    <div className="App"> 
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={"/"}>
+          <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
+          <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
+          <Link to="/form">投稿する</Link>
+        </Route>
+        <Route exact path={"/form/"}>
+          <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+    // <div className="App"> 
 
-      <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
-      {/* <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/> */}
+    //   <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
+    //   {/* <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/> */}
 
-      <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
-    
-      {/* <Button getImage={getImage}/>
-      <Results results={images}/>
-      <Heart images={images} favorite={(images)=>favorite(images)}/>
-      <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
-      <Search searchImage={searchImage} setId={setId}/>
-      <Results results={images2}/>
-      <Heart images={images2} favorite={(images)=>favorite(images)}/> */}
+    //   <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
+    //   <div>
+    //     <Link to={"/home"}>ほー目</Link>
+    //   </div>
 
-    </div>
+    //   <BrowserRouter>
+    //     <Routes>
+    //       <Route path={"/"} element={<Home />} />
+    //     </Routes>
+
+
+    //   </BrowserRouter>
+    //   {/* <Button getImage={getImage}/>
+    //   <Results results={images}/>
+    //   <Heart images={images} favorite={(images)=>favorite(images)}/>
+    //   <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
+    //   <Search searchImage={searchImage} setId={setId}/>
+    //   <Results results={images2}/>
+    //   <Heart images={images2} favorite={(images)=>favorite(images)}/> */}
+
+    // </div>
   );
 }
 

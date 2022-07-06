@@ -9,6 +9,7 @@ import Search from './components/Search';
 import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
 import Home from './components/Home';
+import Show from './components/Show';
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
     Heart: "",
     image: ""
   });
+
+  const [showId, setShowId] = useState("");
   
   //formの入力データのid
   const [id, setId] = useState("")
@@ -102,7 +105,7 @@ function App() {
   }
 
   //データ取得(id)
-  const searchImage = () => {
+  const searchImage = (id) => {
     axios.get(`http://localhost:3001/api/v1/tokos/${id}`)
       .then(res => {
         console.log(res)
@@ -126,13 +129,16 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path={"/"}>
-          <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
-          <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
+          <Results results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+          <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           <Link to="/form">投稿する</Link>
         </Route>
         <Route exact path={"/form/"}>
           <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
         </Route>
+        {/* <Route exact path={"/show/"}> */}
+          {/* <Show showId={showId} searchImage={(id)=>searchImage(id)} images2={images2}/> */}
+        {/* </Route> */}
       </Switch>
     </BrowserRouter>
     // <div className="App"> 

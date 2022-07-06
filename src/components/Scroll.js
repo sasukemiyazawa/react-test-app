@@ -1,7 +1,7 @@
 import Results from "./Results";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Scroll = ({buttonState, setButtonState}) => {
+const Scroll = ({buttonState, setButtonState, setShowId={setShowId}}) => {
     
     const [datas, setDatas]  = useState({
         no1: {},
@@ -25,9 +25,9 @@ const Scroll = ({buttonState, setButtonState}) => {
     },[buttonState])
     return(
     <div className="box">
-    <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState}/>
-    <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState}/>
-    <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState}/>
+    <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+    <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+    <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
     </div>
    );
 }

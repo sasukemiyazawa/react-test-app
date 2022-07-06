@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HeartBt from "./HeartBt";
 const Results = ({results, buttonState, setButtonState, setShowId}) => {
     const {id, name, Heart, image_url} = results
-    setShowId(id)
+    useEffect(()=>{
+        setShowId(id)
+    },[])
     return(
         <div>
             <Link to="/show">

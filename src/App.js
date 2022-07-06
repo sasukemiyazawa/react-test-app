@@ -3,17 +3,12 @@ import { useEffect, useState, useCallback } from "react";
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios";
 import Results from './components/Results';
-import Button from './components/Button';
 import Form from './components/Form';
-import Search from './components/Search';
 import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
-import Home from './components/Home';
 import Show from './components/Show';
 
 function App() {
-
-  const [buttonState, setButtonState] = useState(0);
 
   //サーバーからデータ取得用State
   const [images, setImages] = useState({
@@ -24,6 +19,33 @@ function App() {
     image_url: ""
   });
 
+  //いいねボタンが押される度変化するState
+  const [buttonState, setButtonState] = useState(0);
+
+  //詳細画面へ遷移するときに情報を見たいidを保存するState
+  const [showId, setShowId] = useState("");
+
+  //データ取得
+  const getImage = (options, id) => {
+    axios.get(`http://localhost:3001/api/v1/tokos${options}`)
+    .then(res => {
+      console.log(res)
+      setImages({
+        id: res.data.data[id].id,
+        name: res.data.data[id].name,
+        comment: res.data.data[id].comment,
+        Heart: res.data.data[id].Heart,
+        image_url: res.data.data[id].image_url
+      })
+    })
+   .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+  }
+
+  //最初と、buttonStateが変化する度更新
+  useEffect(()=>{
+    getImage("/heart", 0)//いいね最多データを取得
+  }, [buttonState])
+
   const [images2, setImages2] = useState({
     id:"",
     name: "",
@@ -31,99 +53,6 @@ function App() {
     Heart: "",
     image: ""
   });
-
-  const [showId, setShowId] = useState("");
-  
-  //formの入力データのid
-  const [id, setId] = useState("")
-  //formのイベントパラメータ設定
-  const [nm, setNm] = useState('')
-  const [com, setCom] = useState('')
-  const [label, setLabel] = useState('')
-  //画像だけ追加の操作が必要
-  const selectImage = useCallback((e) => {
-    const selectImage = e.target.files[0]
-    setLabel(selectImage)
-  }, [])
-
-  //送信データ作成
-  const createFormData = () => {
-    const formData = new FormData();
-    if (!label) return
-    formData.append('toko[name]', nm)
-    formData.append('toko[comment]', com)
-    formData.append('toko[image]', label);
-    return formData;
-  }
-
-  //データ送信（新規登録）
-  const sendFormData = async () => {
-    const url = 'http://localhost:3001/api/v1/tokos/'
-    const data = await createFormData()
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      }
-    }
-    axios.post(url, data, config)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => alert("エラーが発生しました"));
-  }
-
-  // データ送信（更新）
-   const updatemData = async (id) => {
-    const url = `http://localhost:3001/api/v1/tokos/${id}`
-    const data = await createFormData()
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      }
-    }
-    axios.patch(url, data, config)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => alert("エラーが発生しました"));
-  }
-
-  //データ取得(options)
-  const getImage = (options) => {
-    axios.get(`http://localhost:3001/api/v1/tokos${options}`)
-      .then(res => {
-        console.log(res)
-        setImages({
-          id: res.data.data[0].id,
-          name: res.data.data[0].name,
-          comment: res.data.data[0].comment,
-          Heart: res.data.data[0].Heart,
-          image_url: res.data.data[0].image_url
-        })
-      })
-      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
-  }
-
-  //データ取得(id)
-  const searchImage = (id) => {
-    axios.get(`http://localhost:3001/api/v1/tokos/${id}`)
-      .then(res => {
-        console.log(res)
-        setImages2({
-          id: res.data.data.id,
-          name: res.data.data.name,
-          comment: res.data.data.comment,
-          Heart: res.data.data.Heart,
-          image: res.data.data.image_url
-        })
-      })
-      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
-  }
-
-  // //最初に一度だけ呼ばれる
-  useEffect(()=>{
-    getImage("/heart")//いいね最多データを取得
-  }, [buttonState])
 
   return (
     <BrowserRouter>
@@ -134,7 +63,7 @@ function App() {
           <Link to="/form">投稿する</Link>
         </Route>
         <Route exact path={"/form/"}>
-          <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
+          <Form/>
         </Route>
         {/* <Route exact path={"/show/"}> */}
           {/* <Show showId={showId} searchImage={(id)=>searchImage(id)} images2={images2}/> */}

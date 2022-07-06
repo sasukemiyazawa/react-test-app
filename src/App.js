@@ -70,24 +70,6 @@ function App() {
         {/* </Route> */}
       </Switch>
     </BrowserRouter>
-    // <div className="App"> 
-
-    //   <Results results={images} buttonState = {buttonState} setButtonState={setButtonState}/>
-    //   {/* <Heart images={images} buttonState = {buttonState} setButtonState={setButtonState}/> */}
-
-    //   <Scroll  buttonState = {buttonState} setButtonState={setButtonState}/>
-    //   <div>
-    //     <Link to={"/home"}>ほー目</Link>
-    //   </div>
-
-    //   <BrowserRouter>
-    //     <Routes>
-    //       <Route path={"/"} element={<Home />} />
-    //     </Routes>
-
-
-    //   </BrowserRouter>
-    //   {/* <Button getImage={getImage}/>
     //   <Results results={images}/>
     //   <Heart images={images} favorite={(images)=>favorite(images)}/>
     //   <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>

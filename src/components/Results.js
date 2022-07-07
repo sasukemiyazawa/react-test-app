@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HeartBt from "./HeartBt";
 const Results = ({results, buttonState, setButtonState, setShowId}) => {
     const {id, name, Heart, image_url} = results
-    useEffect(()=>{
-        setShowId(id)
-    },[])
+    const [showButton, setShowButton] = useState()
+    // useEffect(()=>{
+    //     // setShowId(id)
+    //     // setShowButton(false)
+    // },[showButton])
     return(
         <div>
-            <Link to="/show">
+            <Link to="/show" onClick={() => {setShowId(id)}}>
             {image_url && <div><img src={image_url}/></div>}
+            {/* {setShowId(id)} */}
             </Link>
             {/* <div>{id}</div> */}
             {name && <div>{name}さんの作品</div>}

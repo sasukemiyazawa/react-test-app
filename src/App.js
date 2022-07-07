@@ -37,6 +37,7 @@ function App() {
         Heart: res.data.data[id].Heart,
         image_url: res.data.data[id].image_url
       })
+      // setShowId(res.data.data[id].id)
     })
    .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
   }
@@ -45,14 +46,6 @@ function App() {
   useEffect(()=>{
     getImage("/heart", 0)//いいね最多データを取得
   }, [buttonState])
-
-  const [images2, setImages2] = useState({
-    id:"",
-    name: "",
-    comment: "",
-    Heart: "",
-    image: ""
-  });
 
   return (
     <BrowserRouter>
@@ -65,9 +58,9 @@ function App() {
         <Route exact path={"/form/"}>
           <Form/>
         </Route>
-        {/* <Route exact path={"/show/"}> */}
-          {/* <Show showId={showId} searchImage={(id)=>searchImage(id)} images2={images2}/> */}
-        {/* </Route> */}
+        <Route exact path={"/show/"}>
+          <Show showId={showId}/>
+        </Route>
       </Switch>
     </BrowserRouter>
     //   <Results results={images}/>

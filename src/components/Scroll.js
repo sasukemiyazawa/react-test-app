@@ -1,7 +1,7 @@
 import Results from "./Results";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Scroll = ({buttonState, setButtonState, setShowId={setShowId}}) => {
+const Scroll = ({buttonState, setButtonState, setShowId}) => {
     
     const [datas, setDatas]  = useState({
         no1: {},

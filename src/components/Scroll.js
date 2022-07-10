@@ -24,11 +24,15 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
         getData("/")
     },[buttonState])
     return(
-    <div className="box">
-    <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-    <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-    <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-    </div>
+        <>
+        <div className="title2"><h4>新規投稿</h4></div>
+        <div className="box">
+            <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+            <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+            <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+        </div>   
+        </>
+    
    );
 }
 

@@ -2,11 +2,14 @@ import './App.css';
 import { useEffect, useState, useCallback } from "react";
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios";
+import Result from './components/Result';
 import Results from './components/Results';
 import Form from './components/Form';
 import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
 import Show from './components/Show';
+
+import Button from './components/Button';
 
 function App() {
 
@@ -51,9 +54,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path={"/"}>
-          <Results results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+          <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          <Link to="/form">投稿する</Link>
+          {/* <button><Link to="/form">投稿する</Link></button> */}
+          <Button component={Link} to="/form">しんき</Button>
         </Route>
         <Route exact path={"/form/"}>
           <Form/>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 const Form = () => {
 
@@ -12,6 +13,8 @@ const Form = () => {
       const selectImage = e.target.files[0]
       setLabel(selectImage)
     }, [])
+
+    let history = useHistory();
 
     //送信データ作成
     const createFormData = () => {
@@ -37,10 +40,13 @@ const Form = () => {
           console.log(res);
         })
         .catch(err => alert("エラーが発生しました"));
+
+        history.push("/");
       }
 
     return(
-        <div>
+      <div className="form">
+        <h1>投稿画面です。</h1>
         <input type="text" placeholder="なまえ" onChange={(e) => setNm(e.target.value)}/>
         <input type="text" placeholder="こめんと" onChange={(e) => setCom(e.target.value)}/>
         <input type="file" onChange={(e) => selectImage(e)}/>

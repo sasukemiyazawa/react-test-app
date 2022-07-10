@@ -6,6 +6,7 @@ body {
     display: flex;
     overflow-x: scroll;
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .box div {
@@ -22,6 +23,11 @@ body {
 
 .title {
     text-align: center;
+}
+
+.title2 {
+  text-align: center;
+  /* background-color: #ef4b53; */
 }
 
 .img {
@@ -53,7 +59,7 @@ body {
     
     vertical-align: top;
     /* text-align: ; */
-    margin-left: 262px;
+    margin-left: 210px;
     /* display: flex; */
     /* /* justify-content: flex-end; */
     display: inline-block;
@@ -94,8 +100,8 @@ body {
 
 .circle {
     width: 40px;
-	height: 40px;
-	border-radius: 50%;
+	  height: 40px;
+	  border-radius: 50%;
     border: solid 2px black;
     margin-top: 10px;
     display: inline-block;
@@ -122,6 +128,12 @@ body {
 .comment {
     text-align: center;
     font-size: 25px;
+}
+
+.border {
+  margin-top: 100px;
+  /* border-top: 1px solid black; */
+  /* margin-bottom: 100px; */
 }
 
 
@@ -237,3 +249,38 @@ body {
       animation: heart 1.5s 0.2s infinite ease-out;
     }
   }
+
+
+  /* 008 */
+.button008 a {
+  background: #eee;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 240px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+  z-index:0;
+}
+.button008 a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  display: block;
+  background: #ef4b53;
+  transition: .3s;
+  left:0;
+}
+.button008 a:hover {
+  color: #FFF;
+}
+.button008 a:hover:before {
+  width: 100%;
+  z-index: -1;
+}

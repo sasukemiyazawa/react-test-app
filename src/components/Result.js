@@ -11,7 +11,7 @@ const Result = ({results, buttonState, setButtonState, setShowId}) => {
             {image_url && <div className="img"><img src={image_url}/></div>}
             </Link>
             <div>
-                <div className="circle"><img className="icon" src="icon2.jpg" /></div>
+                <div className="circle"></div>
                 {name && 
                 <div className="nowrap">
                     <p>{name}</p><p>さんの作品</p>

@@ -6,7 +6,9 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
     const [datas, setDatas]  = useState({
         no1: {},
         no2: {},
-        no3: {}
+        no3: {},
+        no4: {},
+        no5: {}
     })
 
     const getData = (options) => {
@@ -16,7 +18,9 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
             setDatas({
                 no1: res.data.data[0],
                 no2: res.data.data[1],
-                no3: res.data.data[2]
+                no3: res.data.data[2],
+                no4: res.data.data[3],
+                no5: res.data.data[4]
             })
         })
     }
@@ -30,6 +34,8 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
             <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+            <Results results={datas.no4} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+            <Results results={datas.no5} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
         </div>   
         </>
     

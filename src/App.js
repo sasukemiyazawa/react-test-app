@@ -40,7 +40,6 @@ function App() {
         Heart: res.data.data[id].Heart,
         image_url: res.data.data[id].image_url
       })
-      // setShowId(res.data.data[id].id)
     })
    .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
   }
@@ -57,7 +56,7 @@ function App() {
           <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           {/* <button><Link to="/form">投稿する</Link></button> */}
-          <Button component={Link} to="/form">しんき</Button>
+          <Button component={Link} to="/form"></Button>
         </Route>
         <Route exact path={"/form/"}>
           <Form/>

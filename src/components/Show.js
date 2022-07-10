@@ -17,12 +17,14 @@ const Show = (showId) => {
     useEffect(()=>{
         getData(showId.showId)
     },[])
-    // const {id, name, Heart, image_url} = images2
     return(
         <>
         <div>
+        <h1>詳細画面です。</h1>
         {images.image_url && <div><img src={images.image_url}/></div>}
-        {images.name && <div>{images.name}さんの作品</div>}
+        {images.name && <div>名前：{images.name}</div>}
+        {<div>コメント：{images.comment}</div>}
+        {<div>いいね数：{images.Heart}</div>}
         {/* <HeartBt images={images2}/> */}
         </div>
         <Link to="/">もどる</Link>

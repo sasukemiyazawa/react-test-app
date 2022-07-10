@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Button = () => {
+
+    let history = useHistory();
+
+    function handleClick() {
+        history.push("/form");
+    }
+
     return(
-        <button></button>
+        <>
+        <div className="border"></div>
+        <div className="button008"><a onClick={handleClick}>とうこう</a></div>
+        </>
     )
 }
 

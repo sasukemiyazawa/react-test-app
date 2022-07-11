@@ -1,0 +1,286 @@
+body {
+    width:800px;
+}
+
+.box {
+    display: flex;
+    overflow-x: scroll;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.box div {
+    /* width: 50%; */
+    margin: 5px;
+    flex-shrink: 0;
+}
+
+.result {
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid black;
+}
+
+.title {
+    text-align: center;
+}
+
+.title2 {
+  text-align: center;
+  /* background-color: #ef4b53; */
+}
+
+.img {
+    border-top: 1px solid black;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.img2 {
+    width: 400px;
+    /* border-bottom: 1px solid black; */
+    margin-right: 0;
+}
+
+.img2 img {
+    border-bottom: 1px solid black;
+}
+
+.nowrap {
+    
+    line-height: 0px;
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.nowrap2 {
+    /* line-height: 0px; */
+    
+    vertical-align: top;
+    /* text-align: ; */
+    margin-left: 210px;
+    /* display: flex; */
+    /* /* justify-content: flex-end; */
+    display: inline-block;
+}
+
+.nowrap3 {
+    line-height: 0px;
+    display: inline-block;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.nowrap3 p {
+    display: inline-block;
+    _display: inline;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.nowrap4 {
+    vertical-align: top;
+    position: relative;
+    top: -14px;
+    /* text-align: ; */
+    /* margin-left: 262px; */
+    /* display: flex; */
+    /* /* justify-content: flex-end; */
+    margin-top: 0px;
+    display: inline-block;
+}
+
+.nowrap p {
+    display: inline-block;
+    _display: inline;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.circle {
+    width: 40px;
+	  height: 40px;
+	  border-radius: 50%;
+    border: solid 2px black;
+    margin-top: 10px;
+    display: inline-block;
+
+    background-image: url('./icon1.jpg');
+    background-size: cover;
+}
+
+.icon {
+    object-fit: cover;
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+	height: 40px;
+    display: inline-block;
+}
+
+.name {
+    text-align: center;
+    font-size: 25px;
+    line-height: 0px
+}
+
+.comment {
+    text-align: center;
+    font-size: 25px;
+}
+
+.border {
+  margin-top: 100px;
+  /* border-top: 1px solid black; */
+  /* margin-bottom: 100px; */
+}
+
+
+/* ボタン本体のスタイル */
+.heart-button {
+    /* ボタン要素の大きさや色 */
+    position: relative;
+    display: inline-block;
+    background-color: #ef4b53;
+    padding: 0.8em 2.4em;
+    border-radius: 5px;
+    border: 2px solid transparent;
+  
+    /* ボタンの文字の設定 */
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+    color: #fff;
+    letter-spacing: 0.1em;
+  
+    /* その他必要なスタイル */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  /* ハートの共通スタイル */
+  .heart-button::before,
+  .heart-button::after {
+    content: "";
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0;
+  }
+  
+  /* 左上のハートのスタイル */
+  .heart-button::before {
+    background-image: url('./heart.svg');
+    top: 0;
+    left: -12px;
+  }
+  
+  /* 右下のハートのスタイル */
+  .heart-button::after {
+    background-image: url('./heart-reverse.svg');
+    bottom: -6px;
+    right: -14px;
+  }
+  
+  /* ========= ホバー時のスタイル ======== */
+  
+  /* ボタンホバー時のスタイル */
+  .heart-button:hover {
+    background-color: #fff;
+    border-color: #ef4b53;
+    color: #ef4b53;
+  }
+  
+  /* ボタンホバー時の左上のハートのスタイル */
+  .heart-button:hover::before {
+    animation: heart 1.5s infinite ease-out;
+  }
+  
+  /* ボタンホバー時の右下のハートのスタイル */
+  .heart-button:hover::after {
+    animation: heart 1.5s 0.2s infinite ease-out;
+  }
+  
+  /* ========= アニメーションの設定 ======== */
+  @keyframes heart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20px) scale(1.4);
+      opacity: 0;
+    }
+  }
+  
+  /* ========= SPのスタイル ======== */
+  @media screen and (max-width: 768px) {
+  
+    /* ボタン本体のスタイル */
+    .heart-button {
+      background-color: #fff;
+      border-color: #ef4b53;
+      color: #ef4b53;
+      
+      /* text-align: center; */
+      /* margin: left 20px; */
+      display: flex;
+      justify-content: flex-end;
+
+    }
+    
+    /* 左上のハートのスタイル */
+    .heart-button::before {
+      animation: heart 1.5s infinite ease-out;
+    }
+  
+    /* 右下のハートのスタイル */
+    .heart-button::after {
+      animation: heart 1.5s 0.2s infinite ease-out;
+    }
+  }
+
+
+  /* 008 */
+.button008 a {
+  background: #eee;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 240px;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+  z-index:0;
+}
+.button008 a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  display: block;
+  background: #ef4b53;
+  transition: .3s;
+  left:0;
+}
+.button008 a:hover {
+  color: #FFF;
+}
+.button008 a:hover:before {
+  width: 100%;
+  z-index: -1;
+}

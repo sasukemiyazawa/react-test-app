@@ -14,7 +14,7 @@ const Results = ({results, buttonState, setButtonState, setShowId}) => {
                     <p>{name}</p><p>さんの作品</p>
                 </div>}
                 <div className="nowrap4">
-                    <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+                    <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState}/>
                 </div>
             </div>
         </div>

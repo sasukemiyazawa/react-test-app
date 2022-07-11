@@ -13,7 +13,7 @@ import Button from './components/Button';
 
 function App() {
 
-  //サーバーからデータ取得用State
+  //データ取得用State
   const [images, setImages] = useState({
     id: "",
     name: "",
@@ -55,7 +55,6 @@ function App() {
         <Route exact path={"/"}>
           <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          {/* <button><Link to="/form">投稿する</Link></button> */}
           <Button component={Link} to="/form"></Button>
         </Route>
         <Route exact path={"/form/"}>
@@ -66,14 +65,6 @@ function App() {
         </Route>
       </Switch>
     </BrowserRouter>
-    //   <Results results={images}/>
-    //   <Heart images={images} favorite={(images)=>favorite(images)}/>
-    //   <Form setNm={setNm} setCom={setCom} selectImage={selectImage} sendFormData={sendFormData}/>
-    //   <Search searchImage={searchImage} setId={setId}/>
-    //   <Results results={images2}/>
-    //   <Heart images={images2} favorite={(images)=>favorite(images)}/> */}
-
-    // </div>
   );
 }
 

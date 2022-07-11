@@ -18,7 +18,7 @@ const Result = ({results, buttonState, setButtonState, setShowId}) => {
                 </div>}
                 {comment && <div className="nowrap"><p>「{comment}」</p></div>}
                 <div className="nowrap2">
-                    <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+                    <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState}/>
                 </div>
             </div>
             

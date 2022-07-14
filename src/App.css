@@ -36,13 +36,22 @@ body {
     border-bottom: 1px solid black;
 }
 
+.img img {
+    width: 800px;
+    height: 400px;
+    object-fit: contain;
+}
+
 .img2 {
-    width: 400px;
+    /* width: 400px; */
     /* border-bottom: 1px solid black; */
     margin-right: 0;
 }
 
 .img2 img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
     border-bottom: 1px solid black;
 }
 

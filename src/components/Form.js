@@ -38,10 +38,9 @@ const Form = () => {
       axios.post(url, data, config)
         .then(res => {
           console.log(res);
+          history.push("/");
         })
         .catch(err => alert("エラーが発生しました"));
-
-        history.push("/");
       }
 
     return(

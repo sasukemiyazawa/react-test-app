@@ -54,6 +54,7 @@ const Form = () => {
       axios.post(url, data, config)
         .then(res => {
           console.log(res);
+          alert("投稿に成功しました！")
           history.push("/");
         })
         .catch(err => alert("エラーが発生しました"));

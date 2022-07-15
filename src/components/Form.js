@@ -14,6 +14,22 @@ const Form = () => {
       setLabel(selectImage)
     }, [])
 
+    //画像のプレビュー機能
+    const [imgSrc, setImgSrc] = useState('')
+    const previewFile = (e) => {
+      const file = e.target.files[0]
+      const reader = new FileReader();
+
+      reader.addEventListener("load", ()=>{
+        setImgSrc(reader.result)
+      }, false)
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+
+    //遷移用
     let history = useHistory();
 
     //送信データ作成
@@ -48,10 +64,18 @@ const Form = () => {
         <h1>投稿画面です。</h1>
         <input type="text" placeholder="なまえ" onChange={(e) => setNm(e.target.value)}/>
         <input type="text" placeholder="こめんと" onChange={(e) => setCom(e.target.value)}/>
-        <input type="file" onChange={(e) => selectImage(e)}/>
+        <input type="file" onChange={(e) => {
+          previewFile(e)
+          selectImage(e)
+        }
+       }/>
         <button onClick={sendFormData}>作成</button>
-
         <Link to="/">もどる</Link>
+
+        <br/>
+        <>
+        <img src={imgSrc} alt="プレビュー"/>
+        </>
       </div>
     );
 };

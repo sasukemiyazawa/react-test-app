@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import HeartBt from "./HeartBt";
 import styled from "styled-components";
+import { Button } from "@mui/material";
 // import {bg} from "../icon3.jpg"
 
 const Result = ({results, buttonState, setButtonState, setShowId}) => {
@@ -18,9 +19,11 @@ const Result = ({results, buttonState, setButtonState, setShowId}) => {
                     <p>{name}</p><p>さんの作品</p>
                 </div>}
                 {comment && <div className="nowrap"><p>「{comment}」</p></div>}
-                <div className="nowrap2">
+                {/* <div className="nowrap2">
                     <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState}/>
-                </div>
+                </div> */}
+
+                <StyledButton>いいね×{results.Heart}</StyledButton>
             </Details>
             
         </Resultdiv>
@@ -64,4 +67,14 @@ const Circle = styled.div`
 
     background-image: url("../icon3.jpg");
     background-size: cover;
+`
+
+const StyledButton = styled(Button)`
+    background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+    border-radius: 3px;
+    border: 0;
+    color: white;
+    height: 48px;
+    padding: 0 30px;
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 `

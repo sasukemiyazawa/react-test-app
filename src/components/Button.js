@@ -11,7 +11,7 @@ const Button = () => {
 
     return(
         <>
-        <div className="border"></div>
+        {/* <div className="border"></div> */}
         <div className="button008"><a onClick={handleClick}>とうこう</a></div>
         </>
     )

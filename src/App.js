@@ -54,8 +54,8 @@ function App() {
       <Switch>
         <Route exact path={"/"}>
           <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          <Button component={Link} to="/form"></Button>
+          {/* <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
+          {/* <Button component={Link} to="/form"></Button> */}
         </Route>
         <Route exact path={"/form/"}>
           <Form/>

@@ -1,0 +1,169 @@
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import Image from "./Image";
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from '@mui/material';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Typography from "@mui/material/Typography";
+import { IconButton } from "@mui/material";
+import { color } from "@mui/system";
+import Crown from "./Crown";
+import HeartBt from "./HeartBt";
+
+const Ranking = () => {
+
+    const [state, setState] = useState(1)
+
+    const [datas, setDatas] = useState({
+        no1: {},
+        no2: {},
+        no3: {}
+    })
+
+    const getDatas = (options, id) => {
+        axios.get(`http://localhost:3001/api/v1/tokos${options}`)
+        .then(res => {
+          console.log(res)
+          setDatas({
+            no1: res.data.data[0],
+            no2: res.data.data[1],
+            no3: res.data.data[2]
+          })
+        })
+       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+    }
+
+    const changeState_p = () => {
+      if(state<3) setState(state+1)
+      else setState(1)
+    }
+
+    const changeState_m = () => {
+        if(state==1) setState(3)
+        else setState(state-1)
+    }
+
+    const [buttonState, setButtonState] = useState(0)
+
+
+
+
+    useEffect(()=>{
+        getDatas("/heart")
+    },[buttonState])
+
+  
+    
+
+    return (
+
+        <ThemeProvider theme={theme}>
+        <Div>
+            <Image datas={datas} state={state}/>
+            {/* <Imagediv>{imgSrc && <Img src="imgSrc"/>}</Imagediv> */}
+        </Div>
+        <Bar>{state}位</Bar>
+        <Crown state={state}/>
+        <IconButton_r onClick={changeState_p}><ArrowRightIcon color="primary" fontSize="large"/></IconButton_r>
+        <IconButton_l onClick={changeState_m}><ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
+        
+        <StyledTypography>投稿者：{datas["no"+state].name}</StyledTypography>
+
+        <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} />
+        
+
+        </ThemeProvider>
+        
+    );
+  }
+  
+  export default Ranking;
+
+
+//以下スタイル指定
+const Div = styled.div`
+    position:absolute;
+
+    top: 109px;
+    left: 60px;
+    width: 240px;
+    height: 324px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #9A9A9A;
+    border-radius: 7px;
+    opacity: 1;
+`
+const Bar = styled.div`
+    position:absolute;
+
+    top: 122px;
+    left: 129px;
+    width: 132px;
+    height: 21px;
+    text-align: center;
+    font: normal normal bold 15px/21px Noto Sans JP;
+    letter-spacing: 0px;
+    color: #9A9A9A;
+    opacity: 1;
+`
+
+const IconButton_r = styled(IconButton)`
+    
+    position:absolute;
+    top: 259px;
+    left: 315px;
+    width: 25px;
+    height: 25px;
+
+    background: '#F5F5F5';
+    border: 1px solid '#A5A5A5';
+`
+
+const IconButton_l = styled(IconButton)`
+    position:absolute;
+    top: 259px;
+    left: -14px;
+    width: 25px;
+    height: 25px;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border: 1px solid #A5A5A5;
+    opacity: 1;
+`
+
+const StyledTypography = styled.h1`
+  position:absolute;
+  top: 471px;
+  left: 70px;
+  width: 81px;
+  height: 13px;
+  text-align: left;
+  font: normal normal bold 9px/13px Noto Sans JP;
+  letter-spacing: 0px;
+  color: #9A9A9A;
+  opacity: 1;
+`
+
+const StyledHeartBt = styled(HeartBt)`
+  position:absolute;
+  top: 470px;
+  left: 200px;
+`
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#A5A5A5',
+        contrastText: '#FFFFFF',
+      },
+      background: {
+        default: '#F5F5F5'
+      },
+      text: {
+        primary: '#FFFFFF'
+      }
+    },
+  });
+  

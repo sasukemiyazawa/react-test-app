@@ -8,6 +8,9 @@ import Form from './components/Form';
 import HeartBt from './components/HeartBt';
 import Scroll from './components/Scroll';
 import Show from './components/Show';
+import Header from './components/Header'
+import SubTitle from './components/SubTitle';
+import Ranking from './components/Ranking';
 
 import Button from './components/Button';
 
@@ -53,15 +56,20 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path={"/"}>
-          <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-          <Button component={Link} to="/form"></Button>
+          <Header />
+          <SubTitle />
+          <Ranking />
+          {/* <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
+
+          {/* <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+          
+          <Button component={Link} to="/form"></Button> */}
         </Route>
         <Route exact path={"/form/"}>
           <Form/>
         </Route>
-        <Route exact path={"/show/"}>
-          <Show showId={showId}/>
+        <Route exact path={"/show/:id"}>
+          <Show />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -25,7 +25,7 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
         })
     }
     useEffect(()=>{
-        getData("/")
+        getData("/heart")
     },[buttonState])
     return(
         <>

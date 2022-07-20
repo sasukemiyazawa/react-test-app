@@ -11,6 +11,9 @@ import { IconButton } from "@mui/material";
 import { color } from "@mui/system";
 import Crown from "./Crown";
 import HeartBt from "./HeartBt";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Ranking = () => {
 
@@ -47,6 +50,47 @@ const Ranking = () => {
 
     const [buttonState, setButtonState] = useState(0)
 
+    const Arrow_r = (props) => {
+      const { className, style, onClick } = props;
+
+      return(
+        <>
+        <IconButton_r 
+          onClick={()=>{
+            changeState_p()
+            onClick()
+          }}
+          style={{...style, position: "fixed"}}>
+            <ArrowRightIcon color="primary" fontSize="large"/>
+        </IconButton_r>
+        </>
+      )
+    }
+
+    const Arrow_l = (props) => {
+      const { className, style, onClick } = props;
+      return(
+        <IconButton_l 
+          onClick={()=>{
+            changeState_m()
+            onClick()
+          }}
+          style={{...style, position: "fixed", left: "0px",}}>
+        <ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
+      )
+      
+    }
+
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      arrows: true,
+      nextArrow: <Arrow_r/>,
+      prevArrow: <Arrow_l/>
+    };
+    
 
 
 
@@ -60,20 +104,33 @@ const Ranking = () => {
     return (
 
         <ThemeProvider theme={theme}>
-        <Div>
+        {/* <Div>
             <Image datas={datas} state={state}/>
-            {/* <Imagediv>{imgSrc && <Img src="imgSrc"/>}</Imagediv> */}
-        </Div>
+        </Div> */}
         <Bar>{state}位</Bar>
         <Crown state={state}/>
-        <IconButton_r onClick={changeState_p}><ArrowRightIcon color="primary" fontSize="large"/></IconButton_r>
-        <IconButton_l onClick={changeState_m}><ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
+        {/* <IconButton_r onClick={changeState_p}><ArrowRightIcon color="primary" fontSize="large"/></IconButton_r> */}
+        {/* <IconButton_l onClick={changeState_m}><ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l> */}
         
         <StyledTypography>投稿者：{datas["no"+state].name}</StyledTypography>
 
         <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} />
         
+        <>
+        <Container>
+          <SliderWrapper>
+            <StyledSlider {...settings}>
+                <div><Image datas={datas} state={1}/></div>
+                <div><Image datas={datas} state={2}/></div>
+                <div><Image datas={datas} state={3}/></div>
+            </StyledSlider>
+          </SliderWrapper>
+        </Container>
+        
 
+
+        </>
+          
         </ThemeProvider>
         
     );
@@ -84,9 +141,9 @@ const Ranking = () => {
 
 //以下スタイル指定
 const Div = styled.div`
-    position:absolute;
+    /* position:absolute; */
 
-    top: 109px;
+    /* top: 109px;
     left: 60px;
     width: 240px;
     height: 324px;
@@ -94,13 +151,13 @@ const Div = styled.div`
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #9A9A9A;
     border-radius: 7px;
-    opacity: 1;
+    opacity: 1; */
 `
 const Bar = styled.div`
     position:absolute;
 
-    top: 122px;
-    left: 129px;
+    top: 126px;
+    left: 145px;
     width: 132px;
     height: 21px;
     text-align: center;
@@ -108,6 +165,7 @@ const Bar = styled.div`
     letter-spacing: 0px;
     color: #9A9A9A;
     opacity: 1;
+    z-index: 1;
 `
 
 const IconButton_r = styled(IconButton)`
@@ -148,9 +206,65 @@ const StyledTypography = styled.h1`
 
 const StyledHeartBt = styled(HeartBt)`
   position:absolute;
-  top: 470px;
+  top: 480px;
   left: 200px;
 `
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const SliderWrapper = styled.div`
+  width: calc(100% - 50px);
+  /* position:fixed;
+  top: 120px;
+  left: 40px;
+  width: 300px;
+  height: 400px;
+
+  border: 1px solid black; */
+  /* width: calc(100% - 50px); */
+
+  /* .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  } */
+`
+const StyledSlider = styled(Slider)`
+  
+  &.slick-slider{
+
+    position:relative;
+    top:74px;
+
+    /* Layout Properties */
+    /* top: 109px;
+    left: 60px;
+    width: 240px;
+    height: 324px; */
+    /* UI Properties */
+    /* background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #9A9A9A;
+    border-radius: 7px;
+    opacity: 1;
+
+    overflow: hidden; */
+
+    /* border: solid 1px black; */
+  }
+  .slick-slide{
+    height: 100%;
+    position:relative;
+    left:-33px;
+  }
+  .slick-list{
+    /* height: 277px; */
+    height: 100%;
+  }
+`
+
 
 const theme = createTheme({
     palette: {
@@ -165,5 +279,8 @@ const theme = createTheme({
         primary: '#FFFFFF'
       }
     },
+    SliderWrapper: {
+      
+    }
   });
   

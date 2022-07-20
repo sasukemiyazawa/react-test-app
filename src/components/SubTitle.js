@@ -12,9 +12,9 @@ const Subtitle = styled.h1`
     position:relative;
     /* Layout Properties */
     top: 70px;
-    left: 111px;
+    /* left: 111px;
     width: 132px;
-    height: 21px;
+    height: 21px; */
     /* UI Properties */
     text-align: center;
     font: normal normal bold 15px/21px Noto Sans JP;

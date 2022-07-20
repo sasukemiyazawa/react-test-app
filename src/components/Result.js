@@ -23,7 +23,10 @@ const Result = ({results, buttonState, setButtonState, setShowId}) => {
                     <HeartBt images={results} buttonState={buttonState} setButtonState={setButtonState}/>
                 </div> */}
 
-                <StyledButton>いいね×{results.Heart}</StyledButton>
+                <button>右</button>
+                <button>左</button>
+
+                {/* <StyledButton>いいね×{results.Heart}</StyledButton> */}
             </Details>
             
         </Resultdiv>

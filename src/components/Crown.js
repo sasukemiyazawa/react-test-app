@@ -19,10 +19,10 @@ export default Crown;
 const Img = styled.div`
     position:absolute;
     /* Layout Properties */
-    top: 122px;
-    left: 148px;
-    width: 36px;
-    height: 50px;
+    top: 7px;
+    left: 75px;
+    /* width: 36px;
+    height: 50px; */
     /* UI Properties */
     opacity: 1;
 

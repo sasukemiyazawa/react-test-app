@@ -76,7 +76,7 @@ const Ranking = () => {
       return(
         <IconButton_l 
           onClick={()=>{
-            changeState_m()
+            // changeState_m()
             onClick()
           }}
           style={{
@@ -95,8 +95,8 @@ const Ranking = () => {
       infinite: true,
       speed: 500,
       arrows: true,
-      nextArrow: <Arrow_r/>,
-      prevArrow: <Arrow_l/>
+      // nextArrow: <Arrow_r/>,
+      // prevArrow: <Arrow_l/>
     };
     
     useEffect(()=>{
@@ -107,24 +107,50 @@ const Ranking = () => {
 
         <ThemeProvider theme={theme}>
         <Div>
-          <StyledTypography>投稿者：{datas["no"+state].name}</StyledTypography>
+          
 
-          <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} />
+          {/* <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} /> */}
 
           <Container>
             <SliderWrapper>
               <StyledSlider {...settings}>
-                  <div><Image datas={datas} state={1}/></div>
-                  <div><Image datas={datas} state={2}/></div>
-                  <div><Image datas={datas} state={3}/></div>
+                  <div>
+                    <Image datas={datas} state={1}/>
+                    <div>
+                    {/* <Bar>{1}位</Bar> */}
+                    {/* <Crown state={1}/>   */}
+                    
+                    <StyledTypography>投稿者：{datas["no"+1].name}</StyledTypography>
+                    <StyledHeartBt images={datas["no"+1]} buttonState={buttonState} setButtonState={setButtonState} />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Image datas={datas} state={2}/>
+                    <div>
+                    {/* <Bar>{2}位</Bar> */}
+                    {/* <Crown state={2}/>   */}
+                    
+                    <StyledTypography>投稿者：{datas["no"+2].name}</StyledTypography>
+                    <StyledHeartBt images={datas["no"+2]} buttonState={buttonState} setButtonState={setButtonState} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Image datas={datas} state={3}/>
+                    <div>
+                    {/* <Bar>{3}位</Bar> */}
+                    {/* <Crown state={3}/>   */}
+                   
+                    <StyledTypography>投稿者：{datas["no"+3].name}</StyledTypography>
+                    <StyledHeartBt images={datas["no"+3]} buttonState={buttonState} setButtonState={setButtonState} />
+                    </div>
+                  </div>
               </StyledSlider>
             </SliderWrapper>
           </Container>
 
-          <div>
-          <Bar>{state}位</Bar>
-          <Crown state={state}/>  
-          </div>
+          
 
         </Div>
         
@@ -138,9 +164,61 @@ const Ranking = () => {
 
 
 //以下スタイル指定
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#A5A5A5',
+      contrastText: '#FFFFFF',
+    },
+    background: {
+      default: '#F5F5F5'
+    },
+    text: {
+      primary: '#FFFFFF'
+    }
+  },
+});
+
 const Div = styled.div`
     height:470px;
+    position:relative;
+    top:73px;
 `
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  height:100%
+`
+const SliderWrapper = styled.div`
+  width: calc(100% - 50px);
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+`
+const StyledSlider = styled(Slider)`
+  &.slick-slider {
+    position:relative;
+    height:100%
+  }
+  .slick-list {
+    /* height: 277px; */
+    height: 100%;
+  }
+  .slick-track {
+    height:100%;
+  }
+  .slick-slide {
+    height: 100%;
+    position:relative;
+    /* left:-33px; */
+  }
+  .slick-dots {
+    position:absolute;
+    bottom: 71px;
+  }
+`
+
 const Bar = styled.div`
     position:absolute;
 
@@ -181,8 +259,8 @@ const IconButton_l = styled(IconButton)`
 
 const StyledTypography = styled.h1`
   position:absolute;
-  top: 471px;
-  left: 70px;
+  top: 331px;
+  left: 49px;
   width: 81px;
   height: 13px;
   text-align: left;
@@ -194,81 +272,6 @@ const StyledTypography = styled.h1`
 
 const StyledHeartBt = styled(HeartBt)`
   position:absolute;
-  top: 480px;
-  left: 200px;
+  top: 336px;
+  left: 160px;
 `
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-const SliderWrapper = styled.div`
-  width: calc(100% - 50px);
-  /* position:fixed;
-  top: 120px;
-  left: 40px;
-  width: 300px;
-  height: 400px;
-
-  border: 1px solid black; */
-  /* width: calc(100% - 50px); */
-
-  /* .slick-prev:before,
-  .slick-next:before {
-    color: black;
-  } */
-`
-const StyledSlider = styled(Slider)`
-  
-  &.slick-slider{
-
-    position:relative;
-    top:74px;
-
-    /* Layout Properties */
-    /* top: 109px;
-    left: 60px;
-    width: 240px;
-    height: 324px; */
-    /* UI Properties */
-    /* background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border: 1px solid #9A9A9A;
-    border-radius: 7px;
-    opacity: 1;
-
-    overflow: hidden; */
-
-    /* border: solid 1px black; */
-  }
-  .slick-slide{
-    height: 100%;
-    position:relative;
-    left:-33px;
-  }
-  .slick-list{
-    /* height: 277px; */
-    height: 100%;
-  }
-`
-
-
-const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#A5A5A5',
-        contrastText: '#FFFFFF',
-      },
-      background: {
-        default: '#F5F5F5'
-      },
-      text: {
-        primary: '#FFFFFF'
-      }
-    },
-    SliderWrapper: {
-      
-    }
-  });
-  

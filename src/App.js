@@ -59,11 +59,11 @@ function App() {
           <Header />
           <SubTitle />
           <Ranking />
-          <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+          {/* <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
 
-          {/* <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
+          {/* <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
           
-          <Button component={Link} to="/form"></Button> */}
+          {/* <Button component={Link} to="/form"></Button> */}
         </Route>
         <Route exact path={"/form/"}>
           <Form/>

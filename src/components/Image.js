@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Crown from "./Crown";
 const Image = (datas, state) => {
-    // const {id, name, Heart, image_url} = results
 
     const n = `no` + datas.state
     // console.log(datas.datas[n])
@@ -9,14 +9,20 @@ const Image = (datas, state) => {
     const link = '/show/' + id
     return(
         <>
-            <Link to={link}>
+            
                 <Div>
-                    <Imagediv>{image_url && <Img src={image_url} />}</Imagediv>
+                    <Crown state={datas.state}/>
+                    <Bar>{datas.state}位</Bar>
+                    <Imagediv>
+                        <Link to={link}>
+                            {image_url && <Img src={image_url} />}
+                        </Link>
+                    </Imagediv>
                 </Div>
                 
                 {/* {image_url && <Img src={image_url} />} */}
                 {/* <Imagediv></Imagediv> */}
-            </Link>
+            
             {/* {console.log(nm)} */}
         </>
     )
@@ -60,7 +66,7 @@ const Div = styled.div`
     /* Layout Properties */
     position:relative;
     top: 0px;
-    left: 60px;
+    /* left: 60px; */
     width: 240px;
     height: 324px;
     /* UI Properties */
@@ -71,4 +77,21 @@ const Div = styled.div`
     opacity: 1;
 
     overflow: hidden;
+    margin:auto;
 `
+
+const Bar = styled.div`
+    position:absolute;
+
+    top: 11px;
+    left: 123px;
+    /* width: 132px;
+    height: 21px; */
+    text-align: center;
+    font: normal normal bold 15px/21px Noto Sans JP;
+    letter-spacing: 0px;
+    color: #9A9A9A;
+    opacity: 1;
+    z-index: 1;
+`
+

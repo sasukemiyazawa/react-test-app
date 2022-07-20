@@ -52,7 +52,6 @@ const Ranking = () => {
 
     const Arrow_r = (props) => {
       const { className, style, onClick } = props;
-
       return(
         <>
         <IconButton_r 
@@ -60,7 +59,12 @@ const Ranking = () => {
             changeState_p()
             onClick()
           }}
-          style={{...style, position: "fixed"}}>
+          style={{
+            ...style, 
+            position: "absolute",
+            top: "144px",
+            left: "273px",
+          }}>
             <ArrowRightIcon color="primary" fontSize="large"/>
         </IconButton_r>
         </>
@@ -75,12 +79,16 @@ const Ranking = () => {
             changeState_m()
             onClick()
           }}
-          style={{...style, position: "fixed", left: "0px",}}>
+          style={{
+            ...style, 
+            position: "absolute",
+            top: "144px",
+            left: "-37px",
+          }}>
         <ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
       )
       
     }
-
 
     const settings = {
       dots: true,
@@ -91,46 +99,36 @@ const Ranking = () => {
       prevArrow: <Arrow_l/>
     };
     
-
-
-
     useEffect(()=>{
         getDatas("/heart")
     },[buttonState])
 
-  
-    
-
     return (
 
         <ThemeProvider theme={theme}>
-        {/* <Div>
-            <Image datas={datas} state={state}/>
-        </Div> */}
-        <Bar>{state}位</Bar>
-        <Crown state={state}/>
-        {/* <IconButton_r onClick={changeState_p}><ArrowRightIcon color="primary" fontSize="large"/></IconButton_r> */}
-        {/* <IconButton_l onClick={changeState_m}><ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l> */}
-        
-        <StyledTypography>投稿者：{datas["no"+state].name}</StyledTypography>
+        <Div>
+          <StyledTypography>投稿者：{datas["no"+state].name}</StyledTypography>
 
-        <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} />
-        
-        <>
-        <Container>
-          <SliderWrapper>
-            <StyledSlider {...settings}>
-                <div><Image datas={datas} state={1}/></div>
-                <div><Image datas={datas} state={2}/></div>
-                <div><Image datas={datas} state={3}/></div>
-            </StyledSlider>
-          </SliderWrapper>
-        </Container>
+          <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} />
+
+          <Container>
+            <SliderWrapper>
+              <StyledSlider {...settings}>
+                  <div><Image datas={datas} state={1}/></div>
+                  <div><Image datas={datas} state={2}/></div>
+                  <div><Image datas={datas} state={3}/></div>
+              </StyledSlider>
+            </SliderWrapper>
+          </Container>
+
+          <div>
+          <Bar>{state}位</Bar>
+          <Crown state={state}/>  
+          </div>
+
+        </Div>
         
 
-
-        </>
-          
         </ThemeProvider>
         
     );
@@ -141,17 +139,7 @@ const Ranking = () => {
 
 //以下スタイル指定
 const Div = styled.div`
-    /* position:absolute; */
-
-    /* top: 109px;
-    left: 60px;
-    width: 240px;
-    height: 324px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border: 1px solid #9A9A9A;
-    border-radius: 7px;
-    opacity: 1; */
+    height:470px;
 `
 const Bar = styled.div`
     position:absolute;

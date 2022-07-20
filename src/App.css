@@ -8,13 +8,6 @@ body, html {
   height: 100%;
 }
 
-.box {
-    display: flex;
-    overflow-x: scroll;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
-
 .box div {
     /* width: 50%; */
     margin: 5px;
@@ -47,14 +40,24 @@ body, html {
 .img2 {
     /* width: 400px; */
     /* border-bottom: 1px solid black; */
-    margin-right: 0;
+    width: 225px;
+    height: 156px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #707070;
+    border-radius: 8px;
+    opacity: 1;
+
+    overflow: hidden;
 }
 
 .img2 img {
-    width: 400px;
-    height: 400px;
+    width: 105%;
+    height: 105%;
+    /* border: 1px solid #707070; */
+    border-radius: 8px;
     object-fit: cover;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
 .nowrap {

@@ -59,7 +59,7 @@ function App() {
           <Header />
           <SubTitle />
           <Ranking />
-          {/* <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
+          <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
 
           {/* <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
           

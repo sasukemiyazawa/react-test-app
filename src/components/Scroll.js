@@ -1,6 +1,7 @@
 import Results from "./Results";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 const Scroll = ({buttonState, setButtonState, setShowId}) => {
     
     const [datas, setDatas]  = useState({
@@ -29,17 +30,22 @@ const Scroll = ({buttonState, setButtonState, setShowId}) => {
     },[buttonState])
     return(
         <>
-        <div className="title2"><h4>新規投稿</h4></div>
-        <div className="box">
+        {/* <div className="title2"><h4>新規投稿</h4></div> */}
+        <Box>
             <Results results={datas.no1} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no2} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no3} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no4} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
             <Results results={datas.no5} buttonState={buttonState} setButtonState={setButtonState} setShowId={setShowId}/>
-        </div>   
+        </Box>   
         </>
     
    );
 }
 
 export default Scroll;
+
+const Box = styled.div`
+    display: flex;
+    flex-direction: column;
+`

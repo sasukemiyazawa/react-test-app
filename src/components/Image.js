@@ -29,7 +29,8 @@ const Imagediv = styled.div`
    position:relative;
     top: 45px;
     width: 240px;
-    height: 277px;
+    height: 279px;
+    left: -1px;
     /* UI Properties */
     /* background: transparent url('img/cristina-gottardi-9TaYFMMapbA-unsplash.png') 0% 0% no-repeat padding-box; */
     border: 1px solid #9A9A9A;

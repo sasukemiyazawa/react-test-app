@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Crown from "./Crown";
-const Image = (datas, state) => {
+const Image = ({datas, state}) => {
 
-    const n = `no` + datas.state
+    const n = `no` + state
     // console.log(datas.datas[n])
-    const {id, name, Heart, image_url} = datas.datas[n]
+    const {id, name, Heart, image_url} = datas[n]
     const link = '/show/' + id
     return(
         <>
             
                 <Div>
-                    <Crown state={datas.state}/>
-                    <Bar>{datas.state}位</Bar>
+                    <Crown state={state}/>
+                    <Bar>{state}位</Bar>
                     <Imagediv>
                         <Link to={link}>
                             {image_url && <Img src={image_url} />}

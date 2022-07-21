@@ -15,60 +15,24 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-const Ranking = () => {
-
-    const [state, setState] = useState(1)
-
-    const [datas, setDatas] = useState({
-        no1: {},
-        no2: {},
-        no3: {}
-    })
-
-    const getDatas = (options, id) => {
-        axios.get(`http://localhost:3001/api/v1/tokos${options}`)
-        .then(res => {
-          console.log(res)
-          setDatas({
-            no1: res.data.data[0],
-            no2: res.data.data[1],
-            no3: res.data.data[2]
-          })
-        })
-       .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
-    }
-
-    const changeState_p = () => {
-      if(state<3) setState(state+1)
-      else setState(1)
-    }
-
-    const changeState_m = () => {
-        if(state==1) setState(3)
-        else setState(state-1)
-    }
-
-    const [buttonState, setButtonState] = useState(0)
+const Ranking = ({setState, datas}) => {
 
     const Arrow_r = (props) => {
       const { className, style, onClick } = props;
       return(
-        <>
         <IconButton_r 
           onClick={()=>{
-            changeState_p()
             onClick()
           }}
           style={{
             ...style, 
-            position: "absolute",
-            top: "144px",
+            position: "relative",
+            top: "-353px",
             left: "273px",
           }}>
             <ArrowRightIcon color="primary" fontSize="large"/>
         </IconButton_r>
-        </>
-      )
+        )
     }
 
     const Arrow_l = (props) => {
@@ -76,85 +40,60 @@ const Ranking = () => {
       return(
         <IconButton_l 
           onClick={()=>{
-            // changeState_m()
             onClick()
           }}
           style={{
             ...style, 
-            position: "absolute",
+            position: "relative",
             top: "144px",
-            left: "-37px",
+            left: "-30px",
           }}>
         <ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
       )
-      
     }
 
     const settings = {
       dots: true,
       infinite: true,
-      speed: 500,
+      
       arrows: true,
-      // nextArrow: <Arrow_r/>,
-      // prevArrow: <Arrow_l/>
+      nextArrow: <Arrow_r/>,
+      prevArrow: <Arrow_l/>,
+      beforeChange: (current, next)=>setState(next+1),
+      
+      // autoplay: true,
+      speed: 500,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
     };
     
-    useEffect(()=>{
-        getDatas("/heart")
-    },[buttonState])
-
     return (
 
         <ThemeProvider theme={theme}>
         <Div>
-          
-
-          {/* <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState} /> */}
 
           <Container>
             <SliderWrapper>
               <StyledSlider {...settings}>
                   <div>
                     <Image datas={datas} state={1}/>
-                    <div>
-                    {/* <Bar>{1}位</Bar> */}
-                    {/* <Crown state={1}/>   */}
-                    
                     <StyledTypography>投稿者：{datas["no"+1].name}</StyledTypography>
-                    <StyledHeartBt images={datas["no"+1]} buttonState={buttonState} setButtonState={setButtonState} />
-                    </div>
                   </div>
                   
                   <div>
                     <Image datas={datas} state={2}/>
-                    <div>
-                    {/* <Bar>{2}位</Bar> */}
-                    {/* <Crown state={2}/>   */}
-                    
                     <StyledTypography>投稿者：{datas["no"+2].name}</StyledTypography>
-                    <StyledHeartBt images={datas["no"+2]} buttonState={buttonState} setButtonState={setButtonState} />
-                    </div>
                   </div>
 
                   <div>
                     <Image datas={datas} state={3}/>
-                    <div>
-                    {/* <Bar>{3}位</Bar> */}
-                    {/* <Crown state={3}/>   */}
-                   
                     <StyledTypography>投稿者：{datas["no"+3].name}</StyledTypography>
-                    <StyledHeartBt images={datas["no"+3]} buttonState={buttonState} setButtonState={setButtonState} />
-                    </div>
                   </div>
               </StyledSlider>
             </SliderWrapper>
           </Container>
-
-          
-
         </Div>
-        
-
         </ThemeProvider>
         
     );
@@ -202,7 +141,6 @@ const StyledSlider = styled(Slider)`
     height:100%
   }
   .slick-list {
-    /* height: 277px; */
     height: 100%;
   }
   .slick-track {
@@ -211,7 +149,6 @@ const StyledSlider = styled(Slider)`
   .slick-slide {
     height: 100%;
     position:relative;
-    /* left:-33px; */
   }
   .slick-dots {
     position:absolute;
@@ -268,10 +205,4 @@ const StyledTypography = styled.h1`
   letter-spacing: 0px;
   color: #9A9A9A;
   opacity: 1;
-`
-
-const StyledHeartBt = styled(HeartBt)`
-  position:absolute;
-  top: 336px;
-  left: 160px;
 `

@@ -2,9 +2,9 @@ import styled from "styled-components"
 import gold from '../gold.png'
 import silver from '../silver.png'
 import bronze from '../bronze.png'
-const Crown = (state) => {
+const Crown = ({state}) => {
     var img=''
-    const State=state.state
+    const State=state
     if(State==1)img=gold
     else if(State==2) img=silver
     else img=bronze

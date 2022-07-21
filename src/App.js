@@ -11,45 +11,39 @@ import Show from './components/Show';
 import Header from './components/Header'
 import SubTitle from './components/SubTitle';
 import Ranking from './components/Ranking';
-
+import styled from 'styled-components';
 import Button from './components/Button';
 
 function App() {
 
-  //データ取得用State
-  const [images, setImages] = useState({
-    id: "",
-    name: "",
-    comment: "",
-    Heart: "",
-    image_url: ""
-  });
+  const [state, setState] = useState(1)
+
+  const [datas, setDatas] = useState({
+    no1: {},
+    no2: {},
+    no3: {}
+})
+
+  const getDatas = (options, id) => {
+    axios.get(`http://localhost:3001/api/v1/tokos${options}`)
+      .then(res => {
+        console.log(res)
+        setDatas({
+          no1: res.data.data[0],
+          no2: res.data.data[1],
+          no3: res.data.data[2]
+        })
+      })
+   .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
+  }
 
   //いいねボタンが押される度変化するState
   const [buttonState, setButtonState] = useState(0);
 
-  //詳細画面へ遷移するときに情報を見たいidを保存するState
-  const [showId, setShowId] = useState("");
-
-  //データ取得
-  const getImage = (options, id) => {
-    axios.get(`http://localhost:3001/api/v1/tokos${options}`)
-    .then(res => {
-      console.log(res)
-      setImages({
-        id: res.data.data[id].id,
-        name: res.data.data[id].name,
-        comment: res.data.data[id].comment,
-        Heart: res.data.data[id].Heart,
-        image_url: res.data.data[id].image_url
-      })
-    })
-   .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"));
-  }
 
   //最初と、buttonStateが変化する度更新
   useEffect(()=>{
-    getImage("/heart", 0)//いいね最多データを取得
+    getDatas("/heart", 0)//いいね最多データを取得
   }, [buttonState])
 
   return (
@@ -58,12 +52,8 @@ function App() {
         <Route exact path={"/"}>
           <Header />
           <SubTitle />
-          <Ranking />
-          {/* <Scroll  buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
-
-          {/* <Result results={images} buttonState = {buttonState} setButtonState={setButtonState} setShowId={setShowId}/> */}
-          
-          {/* <Button component={Link} to="/form"></Button> */}
+          <Ranking setState={setState} datas={datas}/>
+          <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState}/>
         </Route>
         <Route exact path={"/form/"}>
           <Form/>
@@ -77,3 +67,10 @@ function App() {
 }
 
 export default App;
+
+
+const StyledHeartBt = styled(HeartBt)`
+  position:relative;
+  /* top: 336px;
+  left: 160px; */
+`

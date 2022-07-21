@@ -13,6 +13,7 @@ import SubTitle from './components/SubTitle';
 import Ranking from './components/Ranking';
 import styled from 'styled-components';
 import Button from './components/Button';
+import Comment from './components/Comment';
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
           <Header />
           <SubTitle />
           <Ranking setState={setState} datas={datas}/>
+          <Comment data={datas["no"+state]}/>
           <StyledHeartBt images={datas["no"+state]} buttonState={buttonState} setButtonState={setButtonState}/>
         </Route>
         <Route exact path={"/form/"}>
@@ -71,6 +73,6 @@ export default App;
 
 const StyledHeartBt = styled(HeartBt)`
   position:relative;
-  /* top: 336px;
-  left: 160px; */
+  top: 56px;
+  left: 127px;
 `

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Crown from "./Crown";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material";
 const Image = ({datas, state}) => {
 
     const n = `no` + state
@@ -8,11 +11,13 @@ const Image = ({datas, state}) => {
     const {id, name, Heart, image_url} = datas[n]
     const link = '/show/' + id
     return(
-        <>
+        <ThemeProvider theme={theme}>
             
                 <Div>
-                    <Crown state={state}/>
-                    <Bar>{state}位</Bar>
+                    {/* <Crown state={state}/> */}
+                    <Bar>{Heart}回いいね
+                    <StyledHeaet color="primary" fontSize="large"/>
+                    されました！</Bar>
                     <Imagediv>
                         <Link to={link}>
                             {image_url && <Img src={image_url} />}
@@ -24,7 +29,7 @@ const Image = ({datas, state}) => {
                 {/* <Imagediv></Imagediv> */}
             
             {/* {console.log(nm)} */}
-        </>
+        </ThemeProvider>
     )
 }
 
@@ -83,8 +88,8 @@ const Div = styled.div`
 const Bar = styled.div`
     position:absolute;
 
-    top: 11px;
-    left: 123px;
+    top: -6px;
+    left: 20px;
     /* width: 132px;
     height: 21px; */
     text-align: center;
@@ -95,3 +100,16 @@ const Bar = styled.div`
     z-index: 1;
 `
 
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#FC3465',
+        // contrastText: '#FFFFFF'
+      },
+    },
+  });
+
+  const StyledHeaet = styled(FavoriteIcon)`
+    position: relative;
+    top: 12px;
+  `

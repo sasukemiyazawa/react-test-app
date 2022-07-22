@@ -61,7 +61,7 @@ const Ranking = ({setState, datas}) => {
       prevArrow: <Arrow_l/>,
       beforeChange: (current, next)=>setState(next+1),
       
-      // autoplay: true,
+      autoplay: true,
       speed: 500,
       autoplaySpeed: 5000,
       slidesToShow: 1,
@@ -129,7 +129,7 @@ const Container = styled.div`
   height:100%
 `
 const SliderWrapper = styled.div`
-  width: calc(100% - 50px);
+  width: calc(100% - 100px);
   .slick-prev:before,
   .slick-next:before {
     color: black;

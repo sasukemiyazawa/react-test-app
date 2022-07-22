@@ -9,7 +9,7 @@ const Comment = ({data}) => {
 export default Comment;
 
 const Div = styled.div`
-    width: calc(100% - 60px);
+    width: calc(100% - 100px);
     height: 70px;
     margin: auto;
     background-color: #E9E9E9;

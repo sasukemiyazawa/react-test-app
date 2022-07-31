@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const HeartBt = ({images, buttonState, setButtonState}) => {
+const HeartBt = ({images, buttonState, setButtonState, className}) => {
 
     // いいね機能
     const favorite = (images) => {
@@ -14,7 +13,12 @@ const HeartBt = ({images, buttonState, setButtonState}) => {
 
 
     return(
-        <button className="heart-button" onClick={()=>favorite(images)}>いいね×{images.Heart}</button>
+        // <a className="btn-emergency">
+        //     <span className="btn-emergency-bottom"></span>
+        //     <span className="btn-emergency-top"><span>いいね！</span></span>
+        // </a>
+        
+        <button className={className} onClick={()=>favorite(images)}>いいね×{images.Heart}</button>
     );
 };
 

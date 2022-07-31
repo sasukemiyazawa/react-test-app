@@ -28,7 +28,7 @@ const Ranking = ({setState, datas}) => {
             ...style, 
             position: "relative",
             top: "-353px",
-            left: "273px",
+            left: "243px",
           }}>
             <ArrowRightIcon color="primary" fontSize="large"/>
         </IconButton_r>
@@ -46,7 +46,7 @@ const Ranking = ({setState, datas}) => {
             ...style, 
             position: "relative",
             top: "144px",
-            left: "-30px",
+            left: "-53px",
           }}>
         <ArrowLeftIcon color="primary" fontSize="large" /></IconButton_l>
       )
@@ -61,7 +61,7 @@ const Ranking = ({setState, datas}) => {
       prevArrow: <Arrow_l/>,
       beforeChange: (current, next)=>setState(next+1),
       
-      autoplay: true,
+      // autoplay: true,
       speed: 500,
       autoplaySpeed: 5000,
       slidesToShow: 1,

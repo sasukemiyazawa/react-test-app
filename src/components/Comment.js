@@ -9,6 +9,10 @@ const Comment = ({data}) => {
 export default Comment;
 
 const Div = styled.div`
+
+    position: relative;
+    top: 22px;
+
     width: calc(100% - 100px);
     height: 70px;
     margin: auto;
